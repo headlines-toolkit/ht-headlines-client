@@ -1,12 +1,11 @@
 # ht_headlines_client
 
-{@template ht_headlines_client}
 Abstract client for fetching news headlines.
 
 This client is designed to be adaptable to various data sources,
 including but not limited to Firebase Firestore. Implementations
 should handle data fetching, caching, and error management as needed.
-{@endtemplate}
+
 ## Features
 
 * **Abstract Client:** Defines an abstract `HtHeadlinesClient` class that specifies the interface for interacting with news headline data.
@@ -57,5 +56,8 @@ To use this package, add `ht_headlines_client` as a dependency in your `pubspec.
 
 ```yaml
 dependencies:
-  ht_headlines_client: ^latest_version
+  ht_headlines_client:
+    git:
+        url: https://github.com/Headlines-Toolkit/ht-headlines-client.git
+        ref: main
 ```
