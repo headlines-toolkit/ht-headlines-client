@@ -111,6 +111,7 @@ void main() {
         copiedHeadline.publishedAt,
         DateTime.parse('2024-03-07T18:00:00Z'),
       );
+<<<<<<< HEAD
       expect(copiedHeadline.source, 'Source copyWith');
       expect(copiedHeadline.categories, ['science', 'environment']);
       expect(copiedHeadline.eventCountry, 'AU');
@@ -138,6 +139,8 @@ void main() {
         copiedHeadline.publishedAt,
         DateTime.parse('2024-03-07T18:00:00Z'),
       );
+=======
+>>>>>>> e6868e67e232dd11f56ce13839c1b256ebac1c19
       expect(copiedHeadline.source, 'Source copyWith');
       expect(copiedHeadline.categories, ['science', 'environment']);
       expect(copiedHeadline.eventCountry, 'AU');
