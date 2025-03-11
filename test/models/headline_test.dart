@@ -4,10 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group('Headline', () {
     test('constructor', () {
-      const headline = Headline(
-        id: '1',
-        title: 'Test Headline',
-      );
+      const headline = Headline(id: '1', title: 'Test Headline');
       expect(headline.id, '1');
       expect(headline.title, 'Test Headline');
       expect(headline.description, null);
@@ -110,7 +107,10 @@ void main() {
       expect(copiedHeadline.description, 'Description copyWith');
       expect(copiedHeadline.url, 'https://example.com/copyWith');
       expect(copiedHeadline.imageUrl, 'https://example.com/imageCopyWith.png');
-      expect(copiedHeadline.publishedAt, DateTime.parse('2024-03-07T18:00:00Z'));
+      expect(
+        copiedHeadline.publishedAt,
+        DateTime.parse('2024-03-07T18:00:00Z'),
+      );
       expect(copiedHeadline.source, 'Source copyWith');
       expect(copiedHeadline.categories, ['science', 'environment']);
       expect(copiedHeadline.eventCountry, 'AU');
@@ -134,7 +134,10 @@ void main() {
       expect(copiedHeadline.description, 'Description copyWith');
       expect(copiedHeadline.url, 'https://example.com/copyWith');
       expect(copiedHeadline.imageUrl, 'https://example.com/imageCopyWith.png');
-      expect(copiedHeadline.publishedAt, DateTime.parse('2024-03-07T18:00:00Z'));
+      expect(
+        copiedHeadline.publishedAt,
+        DateTime.parse('2024-03-07T18:00:00Z'),
+      );
       expect(copiedHeadline.source, 'Source copyWith');
       expect(copiedHeadline.categories, ['science', 'environment']);
       expect(copiedHeadline.eventCountry, 'AU');
