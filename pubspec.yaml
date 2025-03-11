@@ -1,6 +1,5 @@
 name: ht_headlines_client
-description: A Dart package designed to provide an abstract client for fetching news headlines from various sources.
-version: 1.0.0
+description: Abstract client for fetching news headlines from various sources.
 publish_to: none
 repository: https://github.com/Headlines-Toolkit/ht-headlines-client
 environment:
