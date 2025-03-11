@@ -115,6 +115,29 @@ void main() {
       expect(copiedHeadline.categories, ['science', 'environment']);
       expect(copiedHeadline.eventCountry, 'AU');
     });
-  
+
+    test('copyWith - no changes', () {
+      final headline = Headline(
+        id: '5',
+        title: 'Headline copyWith',
+        description: 'Description copyWith',
+        url: 'https://example.com/copyWith',
+        imageUrl: 'https://example.com/imageCopyWith.png',
+        publishedAt: DateTime.parse('2024-03-07T18:00:00Z'),
+        source: 'Source copyWith',
+        categories: const ['science', 'environment'],
+        eventCountry: 'AU',
+      );
+      final copiedHeadline = headline.copyWith();
+      expect(copiedHeadline.id, '5');
+      expect(copiedHeadline.title, 'Headline copyWith');
+      expect(copiedHeadline.description, 'Description copyWith');
+      expect(copiedHeadline.url, 'https://example.com/copyWith');
+      expect(copiedHeadline.imageUrl, 'https://example.com/imageCopyWith.png');
+      expect(copiedHeadline.publishedAt, DateTime.parse('2024-03-07T18:00:00Z'));
+      expect(copiedHeadline.source, 'Source copyWith');
+      expect(copiedHeadline.categories, ['science', 'environment']);
+      expect(copiedHeadline.eventCountry, 'AU');
+    });
   });
 }
