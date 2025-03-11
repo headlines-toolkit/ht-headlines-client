@@ -53,6 +53,26 @@ void main() {
           ),
         ).called(1);
       });
+
+      test('returns headlines when the call completes successfully', () async {
+        final expectedHeadlines = [
+          Headline(
+            id: '1',
+            title: 'Headline 1',
+            source: 'Source 1',
+            publishedAt: DateTime.now(),
+            categories: const ['category1'],
+            eventCountry: 'US',
+          ),
+        ];
+        when(
+          () => client.getHeadlines(),
+        ).thenAnswer((_) async => expectedHeadlines);
+
+        final actualHeadlines = await client.getHeadlines();
+
+        expect(actualHeadlines, expectedHeadlines);
+      });
     });
   });
 
