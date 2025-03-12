@@ -1,7 +1,7 @@
 name: ht_headlines_client
 description: Abstract client for fetching news headlines from various sources.
 publish_to: none
-repository: https://github.com/Headlines-Toolkit/ht-headlines-client
+repository: https://github.com/headlines-toolkit/ht-headlines-client
 environment:
   sdk: ^3.7.0
 
