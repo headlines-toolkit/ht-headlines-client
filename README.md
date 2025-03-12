@@ -58,6 +58,6 @@ To use this package, add `ht_headlines_client` as a dependency in your `pubspec.
 dependencies:
   ht_headlines_client:
     git:
-        url: https://github.com/Headlines-Toolkit/ht-headlines-client.git
+        url: https://github.com/headlines-toolkit/ht-headlines-client.git
         ref: main
 ```
