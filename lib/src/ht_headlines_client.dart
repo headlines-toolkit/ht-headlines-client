@@ -128,5 +128,12 @@ abstract class HtHeadlinesClient {
   /// Returns a [Future] that resolves to a list of [Headline] objects
   /// that match the search query.
   /// Throws [HeadlinesSearchException] if the search cannot be performed.
-  Future<List<Headline>> searchHeadlines({required String query});
+  /// 
+  /// [limit] - The maximum number of headlines to return.
+  /// [startAfterId] - The ID of the headline to start after (for pagination).
+  Future<List<Headline>> searchHeadlines({
+    required String query,
+    int? limit,
+    String? startAfterId,
+  });
 }
