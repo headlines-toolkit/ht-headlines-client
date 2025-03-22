@@ -7,7 +7,6 @@ part of 'headline.dart';
 // **************************************************************************
 
 Headline _$HeadlineFromJson(Map<String, dynamic> json) => Headline(
-  id: json['id'] as String,
   title: json['title'] as String,
   description: json['description'] as String?,
   url: json['url'] as String?,
@@ -20,6 +19,7 @@ Headline _$HeadlineFromJson(Map<String, dynamic> json) => Headline(
   categories:
       (json['categories'] as List<dynamic>?)?.map((e) => e as String).toList(),
   eventCountry: json['eventCountry'] as String?,
+  id: json['id'] as String?,
 );
 
 Map<String, dynamic> _$HeadlineToJson(Headline instance) => <String, dynamic>{

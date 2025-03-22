@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 part 'headline.g.dart';
 
@@ -11,8 +12,7 @@ part 'headline.g.dart';
 @JsonSerializable()
 class Headline extends Equatable {
   /// {@macro headline}
-  const Headline({
-    required this.id,
+   Headline({
     required this.title,
     this.description,
     this.url,
@@ -21,7 +21,8 @@ class Headline extends Equatable {
     this.source,
     this.categories,
     this.eventCountry,
-  });
+    String? id,
+  }) : id = id ?? const Uuid().v4();
 
   /// Factory method to create a [Headline] instance from a JSON map.
   factory Headline.fromJson(Map<String, dynamic> json) =>
