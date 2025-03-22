@@ -16,7 +16,6 @@ void main() {
       test('should call getHeadlines with correct parameters', () async {
         final expectedHeadlines = [
           Headline(
-            id: '1',
             title: 'Headline 1',
             source: 'Source 1',
             publishedAt: DateTime.now(),
@@ -57,7 +56,6 @@ void main() {
       test('returns headlines when the call completes successfully', () async {
         final expectedHeadlines = [
           Headline(
-            id: '1',
             title: 'Headline 1',
             source: 'Source 1',
             publishedAt: DateTime.now(),
