@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group('Headline', () {
     test('constructor', () {
-      const headline = Headline(id: '1', title: 'Test Headline');
+      final headline = Headline(id: '1', title: 'Test Headline');
       expect(headline.id, '1');
       expect(headline.title, 'Test Headline');
       expect(headline.description, null);
@@ -29,6 +29,7 @@ void main() {
         'eventCountry': 'US',
       };
       final headline = Headline.fromJson(json);
+
       expect(headline.id, '2');
       expect(headline.title, 'Headline from Json');
       expect(headline.description, 'Description from Json');
@@ -76,6 +77,7 @@ void main() {
         categories: const ['tech', 'finance'],
         eventCountry: 'GB',
       );
+
       expect(headline.props, [
         '4',
         'Headline props',
