@@ -44,27 +44,27 @@ void main() {
           () => client.getHeadlines(
             limit: any(named: 'limit'),
             startAfterId: any(named: 'startAfterId'),
-            category: any(named: 'category'),
-            source: any(named: 'source'),
-            eventCountry: any(named: 'eventCountry'),
+            categoryId: any(named: 'categoryId'),
+            sourceId: any(named: 'sourceId'),
+            eventCountryId: any(named: 'eventCountryId'),
           ),
         ).thenAnswer((_) async => expectedHeadlines);
 
         await client.getHeadlines(
           limit: 10,
           startAfterId: 'someId',
-          category: 'someCategory',
-          source: 'someSource',
-          eventCountry: 'someCountry',
+          categoryId: 'someCategoryId',
+          sourceId: 'someSourceId',
+          eventCountryId: 'someCountryId',
         );
 
         verify(
           () => client.getHeadlines(
             limit: 10,
             startAfterId: 'someId',
-            category: 'someCategory',
-            source: 'someSource',
-            eventCountry: 'someCountry',
+            categoryId: 'someCategoryId',
+            sourceId: 'someSourceId',
+            eventCountryId: 'someCountryId',
           ),
         ).called(1);
       });
