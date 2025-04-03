@@ -9,7 +9,10 @@ should handle data fetching, caching, and error management as needed.
 ## Features
 
 * **Abstract Client:** Defines an abstract `HtHeadlinesClient` class that specifies the interface for interacting with news headline data.
-* **Headline Model:** Includes a `Headline` model to represent news headline data with fields like `id`, `title`, `description`, `url`, `imageUrl`, `publishedAt`, `source`, `categories`, and `eventCountry`.
+* **Headline Model:** Includes a `Headline` model to represent news headline data with fields like `id`, `title`, `description`, `url`, `imageUrl`, `publishedAt`. It utilizes models from related packages for complex fields:
+    *   `source`: A `Source` object (from `ht_sources_client`) representing the news source.
+    *   `categories`: A list of `Category` objects (from `ht_categories_client`) the headline belongs to.
+    *   `eventCountry`: A `Country` object (from `ht_countries_client`) indicating the location of the event described in the headline.
 * **Exception Handling:** Defines a set of custom exceptions for robust error handling when fetching or manipulating headline data:
     *   `HeadlinesException`: Base class for all custom exceptions.
     *   `HeadlinesFetchException`: Thrown when there is an issue fetching headlines.
