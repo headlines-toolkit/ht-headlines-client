@@ -74,18 +74,18 @@ abstract class HtHeadlinesClient {
   ///
   /// [limit] - The maximum number of headlines to return.
   /// [startAfterId] - The ID of the headline to start after (for pagination).
-  /// [category] - Optional category filter.
-  /// [source] - Optional source filter.
-  /// [eventCountry] - Optional event country filter.
+  /// [categoryId] - Optional category ID filter.
+  /// [sourceId] - Optional source ID filter.
+  /// [eventCountryId] - Optional event country ID filter.
   ///
   /// Returns a [Future] that resolves to a list of [Headline] objects.
   /// Throws [HeadlinesFetchException] if the headlines cannot be fetched.
   Future<List<Headline>> getHeadlines({
     int? limit,
     String? startAfterId,
-    String? category,
-    String? source,
-    String? eventCountry,
+    String? categoryId,
+    String? sourceId,
+    String? eventCountryId,
   });
 
   /// Fetches a specific headline by its unique identifier.
