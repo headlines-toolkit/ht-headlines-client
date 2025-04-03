@@ -1,4 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:ht_categories_client/ht_categories_client.dart';
+import 'package:ht_countries_client/ht_countries_client.dart';
+import 'package:ht_sources_client/ht_sources_client.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:uuid/uuid.dart';
 
@@ -9,10 +12,12 @@ part 'headline.g.dart';
 ///
 /// Represents a news headline item.
 /// {@endtemplate}
-@JsonSerializable()
+@JsonSerializable(
+  explicitToJson: true,
+) // explicitToJson needed for nested objects
 class Headline extends Equatable {
   /// {@macro headline}
-   Headline({
+  Headline({
     required this.title,
     this.description,
     this.url,
@@ -47,13 +52,16 @@ class Headline extends Equatable {
   final DateTime? publishedAt;
 
   /// Source or origin of the headline.
-  final String? source;
+  @JsonKey(name: 'source')
+  final Source? source;
 
-  /// categories of the current headline
-  final List<String>? categories;
+  /// Categories of the current headline.
+  @JsonKey(name: 'categories')
+  final List<Category>? categories;
 
-  /// the country where the event has took place;
-  final String? eventCountry;
+  /// The country where the event took place.
+  @JsonKey(name: 'event_country')
+  final Country? eventCountry;
 
   /// Converts this [Headline] instance to a JSON map.
   Map<String, dynamic> toJson() => _$HeadlineToJson(this);
@@ -80,9 +88,9 @@ class Headline extends Equatable {
     String? url,
     String? imageUrl,
     DateTime? publishedAt,
-    String? source,
-    List<String>? categories,
-    String? eventCountry,
+    Source? source,
+    List<Category>? categories,
+    Country? eventCountry,
   }) {
     return Headline(
       id: id ?? this.id,
