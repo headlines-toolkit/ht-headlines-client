@@ -209,6 +209,33 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  ht_categories_client:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: bd89aea1b08ed42fee5a929626349a52e263f843
+      url: "https://github.com/headlines-toolkit/ht-categories-client.git"
+    source: git
+    version: "0.0.0"
+  ht_countries_client:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: cbe0bda65b8d1d1221bbeee97f8f21ce857c9db8
+      url: "https://github.com/headlines-toolkit/ht-countries-client.git"
+    source: git
+    version: "0.0.0"
+  ht_sources_client:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "31a4e853146c9e26d865b3377f46345469bc592a"
+      url: "https://github.com/headlines-toolkit/ht-sources-client.git"
+    source: git
+    version: "0.0.0"
   http:
     dependency: transitive
     description:
