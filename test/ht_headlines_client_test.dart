@@ -35,7 +35,7 @@ void main() {
             title: 'Headline 1',
             source: sampleSource,
             publishedAt: testTime,
-            categories: [sampleCategory],
+            category: sampleCategory,
             eventCountry: sampleCountry,
           ),
         ];
@@ -44,27 +44,31 @@ void main() {
           () => client.getHeadlines(
             limit: any(named: 'limit'),
             startAfterId: any(named: 'startAfterId'),
-            categoryId: any(named: 'categoryId'),
-            sourceId: any(named: 'sourceId'),
-            eventCountryId: any(named: 'eventCountryId'),
+            categories: any(named: 'categories'),
+            sources: any(named: 'sources'),
+            eventCountries: any(named: 'eventCountries'),
           ),
         ).thenAnswer((_) async => expectedHeadlines);
+
+        final sampleCategories = [sampleCategory];
+        final sampleSources = [sampleSource];
+        final sampleEventCountries = [sampleCountry];
 
         await client.getHeadlines(
           limit: 10,
           startAfterId: 'someId',
-          categoryId: 'someCategoryId',
-          sourceId: 'someSourceId',
-          eventCountryId: 'someCountryId',
+          categories: sampleCategories,
+          sources: sampleSources,
+          eventCountries: sampleEventCountries,
         );
 
         verify(
           () => client.getHeadlines(
             limit: 10,
             startAfterId: 'someId',
-            categoryId: 'someCategoryId',
-            sourceId: 'someSourceId',
-            eventCountryId: 'someCountryId',
+            categories: sampleCategories,
+            sources: sampleSources,
+            eventCountries: sampleEventCountries,
           ),
         ).called(1);
       });
@@ -78,7 +82,7 @@ void main() {
             title: 'Headline 1',
             source: sampleSource,
             publishedAt: testTime,
-            categories: [sampleCategory],
+            category: sampleCategory,
             eventCountry: sampleCountry,
           ),
         ];
