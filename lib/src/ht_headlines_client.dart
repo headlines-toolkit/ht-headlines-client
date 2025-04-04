@@ -1,4 +1,7 @@
+import 'package:ht_categories_client/ht_categories_client.dart';
+import 'package:ht_countries_client/ht_countries_client.dart';
 import 'package:ht_headlines_client/src/models/headline.dart';
+import 'package:ht_sources_client/ht_sources_client.dart';
 
 /// {@template headlines_exception}
 /// Base class for all custom exceptions in the ht_headlines_client.
@@ -70,22 +73,34 @@ abstract class HtHeadlinesClient {
   /// {@macro ht_headlines_client}
   const HtHeadlinesClient();
 
-  /// Fetches a list of headlines.
+  /// Fetches a list of headlines, optionally filtering by various criteria.
   ///
   /// [limit] - The maximum number of headlines to return.
   /// [startAfterId] - The ID of the headline to start after (for pagination).
-  /// [categoryId] - Optional category ID filter.
-  /// [sourceId] - Optional source ID filter.
-  /// [eventCountryId] - Optional event country ID filter.
+  /// [categories] - Optional list of [Category] objects. If provided, returns
+  ///   headlines whose single category matches *any* of the categories in this
+  ///   list (OR logic).
+  /// [sources] - Optional list of [Source] objects. If provided, returns
+  ///   headlines whose single source matches *any* of the sources in this
+  ///   list (OR logic).
+  /// [eventCountries] - Optional list of [Country] objects. If provided,
+  ///   returns headlines whose single event country matches *any* of the
+  ///   countries in this list (OR logic).
+  ///
+  /// Note: Filtering logic across different parameter types
+  /// (e.g., categories AND sources)
+  ///
+  /// depends on the specific implementation, but typically acts
+  /// as an AND condition.
   ///
   /// Returns a [Future] that resolves to a list of [Headline] objects.
   /// Throws [HeadlinesFetchException] if the headlines cannot be fetched.
   Future<List<Headline>> getHeadlines({
     int? limit,
     String? startAfterId,
-    String? categoryId,
-    String? sourceId,
-    String? eventCountryId,
+    List<Category>? categories,
+    List<Source>? sources,
+    List<Country>? eventCountries,
   });
 
   /// Fetches a specific headline by its unique identifier.
