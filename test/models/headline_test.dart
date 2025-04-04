@@ -8,14 +8,14 @@ void main() {
   // Sample data for nested models
   final sampleSource = Source(id: 'src-1', name: 'Test Source');
   final sampleCategory1 = Category(id: 'cat-1', name: 'business');
-  final sampleCategory2 = Category(id: 'cat-2', name: 'tech');
   final sampleCountry = Country(
     id: 'ctry-1',
     isoCode: 'US',
     name: 'United States',
     flagUrl: 'url/to/us/flag.png',
   );
-  final sampleCategories = [sampleCategory1, sampleCategory2];
+  // Use only one category for testing the single category field
+  final sampleCategory = sampleCategory1;
 
   group('Headline', () {
     test('constructor', () {
@@ -27,7 +27,7 @@ void main() {
       expect(headline.imageUrl, null);
       expect(headline.publishedAt, null);
       expect(headline.source, isNull);
-      expect(headline.categories, isNull);
+      expect(headline.category, isNull);
       expect(headline.eventCountry, isNull);
     });
 
@@ -40,8 +40,8 @@ void main() {
         'imageUrl': 'https://example.com/image.png',
         'publishedAt': '2024-03-07T12:00:00Z',
         'source': sampleSource.toJson(),
-        'categories': sampleCategories.map((c) => c.toJson()).toList(),
-        'event_country': sampleCountry.toJson(), // Note: key is event_country
+        'category': sampleCategory.toJson(),
+        'event_country': sampleCountry.toJson(),
       };
       final headline = Headline.fromJson(json);
 
@@ -52,7 +52,7 @@ void main() {
       expect(headline.imageUrl, 'https://example.com/image.png');
       expect(headline.publishedAt, DateTime.parse('2024-03-07T12:00:00Z'));
       expect(headline.source, sampleSource);
-      expect(headline.categories, sampleCategories);
+      expect(headline.category, sampleCategory);
       expect(headline.eventCountry, sampleCountry);
     });
 
@@ -65,7 +65,7 @@ void main() {
         imageUrl: 'https://example.com/imageToJson.png',
         publishedAt: DateTime.parse('2024-03-07T14:00:00Z'),
         source: sampleSource,
-        categories: sampleCategories,
+        category: sampleCategory,
         eventCountry: sampleCountry,
       );
       final json = headline.toJson();
@@ -77,10 +77,7 @@ void main() {
       expect(json['imageUrl'], 'https://example.com/imageToJson.png');
       expect(json['publishedAt'], '2024-03-07T14:00:00.000Z');
       expect(json['source'], sampleSource.toJson());
-      expect(
-        json['categories'],
-        sampleCategories.map((c) => c.toJson()).toList(),
-      );
+      expect(json['category'], sampleCategory.toJson());
       expect(json['event_country'], sampleCountry.toJson());
     });
 
@@ -93,7 +90,7 @@ void main() {
         imageUrl: 'https://example.com/imageProps.png',
         publishedAt: DateTime.parse('2024-03-07T16:00:00Z'),
         source: sampleSource,
-        categories: sampleCategories,
+        category: sampleCategory,
         eventCountry: sampleCountry,
       );
 
@@ -105,7 +102,7 @@ void main() {
         'https://example.com/imageProps.png',
         DateTime.parse('2024-03-07T16:00:00Z'),
         sampleSource,
-        sampleCategories,
+        sampleCategory,
         sampleCountry,
       ]);
     });
@@ -119,7 +116,7 @@ void main() {
         imageUrl: 'https://example.com/imageCopyWith.png',
         publishedAt: DateTime.parse('2024-03-07T18:00:00Z'),
         source: sampleSource,
-        categories: sampleCategories,
+        category: sampleCategory,
         eventCountry: sampleCountry,
       );
       final updatedSource = Source(id: 'src-2', name: 'Updated Source');
@@ -138,7 +135,7 @@ void main() {
         DateTime.parse('2024-03-07T18:00:00Z'),
       );
       expect(copiedHeadline.source, updatedSource); // Check updated source
-      expect(copiedHeadline.categories, sampleCategories); // Should be original
+      expect(copiedHeadline.category, sampleCategory); // Should be original
       expect(copiedHeadline.eventCountry, sampleCountry); // Should be original
     });
 
@@ -151,7 +148,7 @@ void main() {
         imageUrl: 'https://example.com/imageCopyWith.png',
         publishedAt: DateTime.parse('2024-03-07T18:00:00Z'),
         source: sampleSource,
-        categories: sampleCategories,
+        category: sampleCategory,
         eventCountry: sampleCountry,
       );
       final copiedHeadline = headline.copyWith();
@@ -166,7 +163,7 @@ void main() {
         DateTime.parse('2024-03-07T18:00:00Z'),
       );
       expect(copiedHeadline.source, sampleSource);
-      expect(copiedHeadline.categories, sampleCategories);
+      expect(copiedHeadline.category, sampleCategory);
       expect(copiedHeadline.eventCountry, sampleCountry);
     });
   });
