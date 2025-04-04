@@ -24,7 +24,7 @@ class Headline extends Equatable {
     this.imageUrl,
     this.publishedAt,
     this.source,
-    this.categories,
+    this.category,
     this.eventCountry,
     String? id,
   }) : id = id ?? const Uuid().v4();
@@ -55,9 +55,9 @@ class Headline extends Equatable {
   @JsonKey(name: 'source')
   final Source? source;
 
-  /// Categories of the current headline.
-  @JsonKey(name: 'categories')
-  final List<Category>? categories;
+  /// Category of the current headline.
+  @JsonKey(name: 'category')
+  final Category? category;
 
   /// The country where the event took place.
   @JsonKey(name: 'event_country')
@@ -75,7 +75,7 @@ class Headline extends Equatable {
     imageUrl,
     publishedAt,
     source,
-    categories,
+    category,
     eventCountry,
   ];
 
@@ -89,7 +89,7 @@ class Headline extends Equatable {
     String? imageUrl,
     DateTime? publishedAt,
     Source? source,
-    List<Category>? categories,
+    Category? category,
     Country? eventCountry,
   }) {
     return Headline(
@@ -100,7 +100,7 @@ class Headline extends Equatable {
       imageUrl: imageUrl ?? this.imageUrl,
       publishedAt: publishedAt ?? this.publishedAt,
       source: source ?? this.source,
-      categories: categories ?? this.categories,
+      category: category ?? this.category,
       eventCountry: eventCountry ?? this.eventCountry,
     );
   }

@@ -19,10 +19,10 @@ Headline _$HeadlineFromJson(Map<String, dynamic> json) => Headline(
       json['source'] == null
           ? null
           : Source.fromJson(json['source'] as Map<String, dynamic>),
-  categories:
-      (json['categories'] as List<dynamic>?)
-          ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  category:
+      json['category'] == null
+          ? null
+          : Category.fromJson(json['category'] as Map<String, dynamic>),
   eventCountry:
       json['event_country'] == null
           ? null
@@ -38,6 +38,6 @@ Map<String, dynamic> _$HeadlineToJson(Headline instance) => <String, dynamic>{
   'imageUrl': instance.imageUrl,
   'publishedAt': instance.publishedAt?.toIso8601String(),
   'source': instance.source?.toJson(),
-  'categories': instance.categories?.map((e) => e.toJson()).toList(),
+  'category': instance.category?.toJson(),
   'event_country': instance.eventCountry?.toJson(),
 };
