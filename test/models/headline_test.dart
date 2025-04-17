@@ -175,7 +175,7 @@ void main() {
       });
 
       test('props list should contain all relevant fields', () {
-        // This test implicitly checks if all fields used for 
+        // This test implicitly checks if all fields used for
         // equality are in props
         expect(
           fullHeadline.props.length,
