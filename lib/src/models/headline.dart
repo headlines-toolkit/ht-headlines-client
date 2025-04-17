@@ -1,20 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:ht_categories_client/ht_categories_client.dart';
-import 'package:ht_countries_client/ht_countries_client.dart';
 import 'package:ht_sources_client/ht_sources_client.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:uuid/uuid.dart';
-
-part 'headline.g.dart';
 
 /// {@template headline}
 /// Headline model
 ///
 /// Represents a news headline item.
 /// {@endtemplate}
-@JsonSerializable(
-  explicitToJson: true,
-) // explicitToJson needed for nested objects
 class Headline extends Equatable {
   /// {@macro headline}
   Headline({
@@ -25,13 +18,31 @@ class Headline extends Equatable {
     this.publishedAt,
     this.source,
     this.category,
-    this.eventCountry,
     String? id,
   }) : id = id ?? const Uuid().v4();
 
   /// Factory method to create a [Headline] instance from a JSON map.
-  factory Headline.fromJson(Map<String, dynamic> json) =>
-      _$HeadlineFromJson(json);
+  factory Headline.fromJson(Map<String, dynamic> json) {
+    return Headline(
+      id: json['id'] as String?, // Use existing ID if present
+      title: json['title'] as String,
+      description: json['description'] as String?,
+      url: json['url'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      publishedAt:
+          json['publishedAt'] == null
+              ? null
+              : DateTime.tryParse(json['publishedAt'] as String),
+      source:
+          json['source'] == null
+              ? null
+              : Source.fromJson(json['source'] as Map<String, dynamic>),
+      category:
+          json['category'] == null
+              ? null
+              : Category.fromJson(json['category'] as Map<String, dynamic>),
+    );
+  }
 
   /// Unique identifier for the headline.
   final String id;
@@ -52,19 +63,34 @@ class Headline extends Equatable {
   final DateTime? publishedAt;
 
   /// Source or origin of the headline.
-  @JsonKey(name: 'source')
   final Source? source;
 
   /// Category of the current headline.
-  @JsonKey(name: 'category')
   final Category? category;
 
-  /// The country where the event took place.
-  @JsonKey(name: 'event_country')
-  final Country? eventCountry;
-
   /// Converts this [Headline] instance to a JSON map.
-  Map<String, dynamic> toJson() => _$HeadlineToJson(this);
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{'id': id, 'title': title};
+    if (description != null) {
+      json['description'] = description;
+    }
+    if (url != null) {
+      json['url'] = url;
+    }
+    if (imageUrl != null) {
+      json['imageUrl'] = imageUrl;
+    }
+    if (publishedAt != null) {
+      json['publishedAt'] = publishedAt!.toIso8601String();
+    }
+    if (source != null) {
+      json['source'] = source!.toJson(); // Assumes Source has toJson
+    }
+    if (category != null) {
+      json['category'] = category!.toJson(); // Assumes Category has toJson
+    }
+    return json;
+  }
 
   @override
   List<Object?> get props => [
@@ -76,7 +102,6 @@ class Headline extends Equatable {
     publishedAt,
     source,
     category,
-    eventCountry,
   ];
 
   /// Creates a new [Headline] with updated properties.
@@ -90,7 +115,6 @@ class Headline extends Equatable {
     DateTime? publishedAt,
     Source? source,
     Category? category,
-    Country? eventCountry,
   }) {
     return Headline(
       id: id ?? this.id,
@@ -101,7 +125,6 @@ class Headline extends Equatable {
       publishedAt: publishedAt ?? this.publishedAt,
       source: source ?? this.source,
       category: category ?? this.category,
-      eventCountry: eventCountry ?? this.eventCountry,
     );
   }
 }

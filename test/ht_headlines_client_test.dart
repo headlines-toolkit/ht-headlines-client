@@ -36,7 +36,6 @@ void main() {
             source: sampleSource,
             publishedAt: testTime,
             category: sampleCategory,
-            eventCountry: sampleCountry,
           ),
         ];
 
@@ -46,20 +45,17 @@ void main() {
             startAfterId: any(named: 'startAfterId'),
             categories: any(named: 'categories'),
             sources: any(named: 'sources'),
-            eventCountries: any(named: 'eventCountries'),
           ),
         ).thenAnswer((_) async => expectedHeadlines);
 
         final sampleCategories = [sampleCategory];
         final sampleSources = [sampleSource];
-        final sampleEventCountries = [sampleCountry];
 
         await client.getHeadlines(
           limit: 10,
           startAfterId: 'someId',
           categories: sampleCategories,
           sources: sampleSources,
-          eventCountries: sampleEventCountries,
         );
 
         verify(
@@ -68,7 +64,6 @@ void main() {
             startAfterId: 'someId',
             categories: sampleCategories,
             sources: sampleSources,
-            eventCountries: sampleEventCountries,
           ),
         ).called(1);
       });
@@ -83,7 +78,6 @@ void main() {
             source: sampleSource,
             publishedAt: testTime,
             category: sampleCategory,
-            eventCountry: sampleCountry,
           ),
         ];
         when(
